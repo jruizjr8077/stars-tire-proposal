@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Revenue Growth System — Stars Tire Shop | VectorEchelon AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --card: #111111;
+    --card-raised: #161616;
+    --border: #1e1e1e;
+    --border-accent: rgba(232,69,69,0.25);
+    --accent: #E84545;
+    --accent-dim: rgba(232,69,69,0.85);
+    --accent-faint: rgba(232,69,69,0.06);
+    --text: #d4d4d4;
+    --text-dim: #a0a0a0;
+    --text-bright: #ececec;
+    --white: #f2f2f2;
+    --red-dim: rgba(230,80,80,0.85);
+    --green-dim: rgba(90,170,90,0.8);
+    --green: #6ab06a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === UTILITY === */
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .oswald { font-family: 'Oswald', sans-serif; }
+  .accent { color: var(--accent); }
+  .dim { color: var(--text-dim); }
+  .bright { color: var(--text-bright); }
+
+  /* === SCROLL REVEAL === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === LAYOUT === */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* === COVER === */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-accent);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(200,53,53,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+  .cover-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .cover-title strong {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .cover-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--text);
+    font-style: italic;
+    max-width: 580px;
+    margin-bottom: 80px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .cover-meta-item .label {
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .cover-meta-item .value {
+    color: var(--accent);
+  }
+
+  /* === SECTION HEADERS === */
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .section-lead {
+    font-size: 17px;
+    color: var(--text);
+    max-width: 640px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  /* === DISCOVERY GRID === */
+  .disc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .disc-cell {
+    background: var(--card);
+    padding: 28px 24px;
+  }
+  .disc-cell .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .disc-cell .value {
+    font-size: 15px;
+    color: var(--text-bright);
+    line-height: 1.6;
+  }
+  .disc-cell .value strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* === INSIGHT CALLOUT === */
+  .insight {
+    border-left: 2px solid var(--accent);
+    padding: 32px 36px;
+    background: var(--accent-faint);
+    margin: 48px 0;
+    position: relative;
+  }
+  .insight::before {
+    content: 'KEY INSIGHT';
+    position: absolute;
+    top: -10px;
+    left: 36px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    background: var(--black);
+    padding: 2px 10px;
+  }
+  .insight p {
+    font-size: 17px;
+    color: var(--text-bright);
+    line-height: 1.8;
+    font-style: italic;
+  }
+  .insight strong {
+    color: var(--accent);
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  /* === DELIVERABLE CARDS === */
+  .deliverable {
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  .deliverable::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+  }
+  .deliverable-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .deliverable-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+  }
+  .deliverable-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 1px;
+    flex: 1;
+    margin-left: 16px;
+  }
+  .deliverable-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+  }
+  .deliverable-body {
+    padding: 24px 32px 28px;
+  }
+  .deliverable-body p {
+    font-size: 16px;
+    color: var(--text-bright);
+    margin-bottom: 20px;
+    line-height: 1.75;
+  }
+  .deliverable-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .deliverable-list li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.7;
+  }
+  .deliverable-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 1px;
+    background: var(--accent-dim);
+  }
+
+  /* === CONVERSION FLOW === */
+  .flow-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+  }
+  .flow-panel {
+    padding: 36px 32px;
+    position: relative;
+  }
+  .flow-panel.before {
+    background: rgba(180,60,60,0.04);
+    border: 1px solid rgba(180,60,60,0.15);
+  }
+  .flow-panel.after {
+    background: rgba(80,160,80,0.04);
+    border: 1px solid rgba(80,160,80,0.15);
+  }
+  .flow-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flow-label .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .before .flow-label { color: var(--red-dim); }
+  .before .flow-label .dot { background: var(--red-dim); }
+  .after .flow-label { color: var(--green); }
+  .after .flow-label .dot { background: var(--green); }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 24px;
+    width: 1px;
+    height: calc(100% + 2px);
+    background: var(--border);
+  }
+  .flow-step .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .before .flow-step .num {
+    border: 1px solid rgba(180,60,60,0.3);
+    color: var(--red-dim);
+    background: var(--black);
+  }
+  .after .flow-step .num {
+    border: 1px solid rgba(80,160,80,0.3);
+    color: var(--green);
+    background: var(--black);
+  }
+  .flow-step .text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-bright);
+    line-height: 1.6;
+    padding-top: 3px;
+  }
+  .flow-step .text em {
+    font-style: normal;
+    color: var(--text);
+  }
+  .flow-result {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .before .flow-result { color: var(--red-dim); }
+  .after .flow-result { color: var(--green); }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    margin: 48px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--border);
+  }
+  .tl-item {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .tl-marker {
+    width: 65px;
+    flex-shrink: 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-marker .week {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: var(--black);
+    padding: 4px 0;
+  }
+  .tl-marker .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--black);
+    margin: 8px auto 0;
+  }
+  .tl-content {
+    flex: 1;
+    padding-top: 2px;
+  }
+  .tl-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-bright);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .tl-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* === INVESTMENT TABLE === */
+  .inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+  }
+  .inv-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-accent);
+  }
+  .inv-table thead th:last-child {
+    text-align: right;
+  }
+  .inv-table tbody td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .inv-table tbody td:first-child {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+    width: 240px;
+  }
+  .inv-table tbody td:nth-child(2) {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .inv-table tbody td:last-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 1px;
+  }
+  .inv-table tfoot td {
+    padding: 20px 20px;
+    border-top: 2px solid var(--accent);
+  }
+  .inv-table tfoot td:first-child {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .inv-table tfoot td:last-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    text-align: right;
+    letter-spacing: 1px;
+  }
+  .inv-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-top: 20px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  /* === SUPPLIER TABLE === */
+  .supplier-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 13px;
+  }
+  .supplier-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-accent);
+    background: var(--card-raised);
+  }
+  .supplier-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-bright);
+    line-height: 1.6;
+  }
+  .supplier-table tbody td:first-child {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .supplier-table .status-active {
+    color: var(--green);
+  }
+  .supplier-table .status-needed {
+    color: var(--accent-dim);
+  }
+  .supplier-table .priority-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: var(--accent-faint);
+    border: 1px solid var(--border-accent);
+    padding: 2px 6px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .supplier-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-top: 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  /* === REVENUE TABLE === */
+  .rev-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+  }
+  .rev-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-align: right;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-accent);
+    background: var(--card-raised);
+  }
+  .rev-table thead th:first-child {
+    text-align: left;
+  }
+  .rev-table tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-bright);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .rev-table tbody td:first-child {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+    text-align: left;
+  }
+  .rev-table tfoot td {
+    padding: 16px 16px;
+    border-top: 2px solid var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-align: right;
+  }
+  .rev-table tfoot td:first-child {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: var(--accent);
+    text-align: left;
+    letter-spacing: 1px;
+  }
+
+  /* === PRICING GRID (inside deliverable) === */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  .pricing-col {
+    background: var(--card);
+    padding: 20px 22px;
+  }
+  .pricing-col.raised {
+    background: var(--card-raised);
+  }
+  .pricing-col-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .pricing-col-label.highlight {
+    color: var(--accent);
+  }
+  .pricing-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .pricing-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 1px;
+    background: var(--accent-dim);
+  }
+
+  /* === PAYMENT SCHEDULE === */
+  .pay-schedule {
+    margin: 48px 0;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .pay-schedule-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pay-schedule-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .pay-schedule-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .pay-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .pay-row:last-child { border-bottom: none; }
+  .pay-row.pay-header > div {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    padding: 14px 20px;
+    background: var(--card-raised);
+  }
+  .pay-row > div {
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .pay-row > div:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-bright);
+  }
+  .pay-row > div:not(:first-child) {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .pay-row .pay-amount {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* === NEXT STEPS === */
+  .steps-list {
+    counter-reset: steps;
+    list-style: none;
+    margin: 40px 0;
+  }
+  .steps-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps-list li::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .steps-list li p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .steps-list li strong {
+    color: var(--text-bright);
+    font-weight: 500;
+  }
+
+  /* === OWNERSHIP STRIP === */
+  .ownership {
+    background: var(--accent-faint);
+    border: 1px solid var(--border-accent);
+    padding: 28px 32px;
+    margin: 48px 0;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .ownership-icon {
+    font-size: 28px;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .ownership p {
+    font-size: 15px;
+    color: var(--text-bright);
+    line-height: 1.7;
+  }
+  .ownership strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* === RETAINER GRID === */
+  .retainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 32px 0;
+  }
+  .retainer-item {
+    background: var(--card);
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .retainer-item .r-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-bright);
+    line-height: 1.5;
+  }
+  .retainer-item .r-amount {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+  .retainer-total {
+    background: var(--card-raised);
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 1 / -1;
+    border-top: 2px solid var(--accent);
+  }
+  .retainer-total .r-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .retainer-total .r-amount {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    padding: 60px 0 40px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: var(--accent-dim);
+    margin-bottom: 20px;
+  }
+  .footer-contact {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 1px;
+    line-height: 2;
+  }
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-contact a:hover { color: var(--accent); }
+  .footer-legal {
+    margin-top: 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(232,69,69,0.5);
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  /* === PAGE BREAK HINTS (for print) === */
+  @media print {
+    section { page-break-inside: avoid; }
+    .deliverable { page-break-inside: avoid; }
+    .cover { min-height: auto; page-break-after: always; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    body { background: #fff; color: #222; }
+    .disc-cell, .card, .deliverable, .pay-schedule, .pay-option, .supplier-table, .rev-table { background: #fff; }
+    .pay-option-detail { max-height: none !important; padding: 16px 24px !important; border-top: 1px solid #ddd !important; }
+    .pay-btn { display: none !important; }
+    .pay-alt { display: none !important; }
+  }
+
+  /* === PAYMENT OPTIONS === */
+  .pay-option {
+    border: 1px solid var(--border);
+    background: var(--card);
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+  .pay-option:hover {
+    border-color: var(--accent-dim);
+  }
+  .pay-option.active {
+    border-color: var(--accent);
+  }
+  .pay-option-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pay-option-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .pay-option-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .pay-option.active .pay-option-radio {
+    border-color: var(--accent);
+  }
+  .pay-option.active .pay-option-radio::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .pay-option-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+  }
+  .pay-option-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 2px;
+  }
+  .pay-option-price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .pay-option-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.4s;
+    padding: 0 24px;
+    border-top: 0 solid var(--border);
+  }
+  .pay-option.active .pay-option-detail {
+    max-height: 500px;
+    padding: 20px 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .pay-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-bright);
+  }
+  .pay-detail-row:last-of-type {
+    border-bottom: none;
+  }
+  .pay-detail-row .pay-amount {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .pay-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .pay-btn:hover {
+    background: #f05555;
+    transform: translateY(-1px);
+  }
+  .pay-alt {
+    text-align: center;
+    margin-top: 16px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    background: var(--card-raised);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-bright);
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+  .pay-alt a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .pay-alt a:hover {
+    text-decoration: underline;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 700px) {
+    .container { padding: 0 24px; }
+    section { padding: 60px 0; }
+    .disc-grid { grid-template-columns: 1fr; }
+    .deliverable-list { grid-template-columns: 1fr; }
+    .flow-compare { grid-template-columns: 1fr; }
+    .cover-meta { gap: 28px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .retainer-grid { grid-template-columns: 1fr; }
+    .inv-table tbody td:first-child { width: auto; }
+    .deliverable-header { flex-direction: column; gap: 8px; }
+    .deliverable-title { margin-left: 0; }
+    .supplier-table { font-size: 11px; }
+    .supplier-table thead th, .supplier-table tbody td { padding: 10px 8px; }
+    .rev-table { font-size: 11px; }
+    .pay-row { grid-template-columns: 1fr 1fr; gap: 1px; }
+    .pay-option-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .pay-option-price { margin-left: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<section class="cover">
+  <div class="container">
+    <div class="cover-badge reveal">VectorEchelon AI &mdash; Digital Growth Proposal</div>
+    <h1 class="cover-title reveal">Digital Revenue Growth System for<br><strong>Stars Tire Shop</strong></h1>
+    <p class="cover-sub reveal">From manual social posts to a fully automated, multi-channel revenue engine &mdash; real-time distributor integration, e-commerce, fleet outreach, and 24/7 dispatch.</p>
+    <div class="cover-meta reveal">
+      <div class="cover-meta-item">
+        <div class="label">Prepared for</div>
+        <div class="value">Stars Tire Shop &mdash; Seguin &amp; Luling, TX</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Date</div>
+        <div class="value">23 February 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Classification</div>
+        <div class="value">Confidential</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 01 — DISCOVERY SUMMARY ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">01</div>
+    <h2 class="section-title reveal">Discovery Summary</h2>
+    <p class="section-lead reveal">Based on Clover transaction data and operational review, here is where Stars Tire Shop stands today across both locations.</p>
+
+    <div class="disc-grid reveal">
+      <div class="disc-cell">
+        <div class="label">Current Revenue</div>
+        <div class="value"><strong>$40,000&ndash;55,000/mo</strong> across two locations</div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">Marketing Spend</div>
+        <div class="value"><strong>$1,800/mo</strong> on manual social posts &mdash; <strong>zero tracked conversions</strong></div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">E-Commerce Revenue</div>
+        <div class="value"><strong>$0</strong> &mdash; tires can only be purchased in-store</div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">Digital Infrastructure</div>
+        <div class="value"><strong>No CRM, no booking, no online shop, no retargeting</strong></div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">Distributor Relationships</div>
+        <div class="value"><strong>5 active</strong> &mdash; ATD, Hesselbein, U.S. AutoForce, Southern Tire Mart, BZO</div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">Payment Processing</div>
+        <div class="value"><strong>Clover POS</strong> in-store &mdash; VectorEchelon admin access active</div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">SEO Foundation</div>
+        <div class="value"><strong>stars-seo-fixes plugin v2.2.0</strong> deployed &mdash; structured data live for both locations</div>
+      </div>
+      <div class="disc-cell">
+        <div class="label">Commercial Opportunity</div>
+        <div class="value"><strong>I-10/US-183 corridor</strong> &mdash; Luling location has near-zero online visibility</div>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <p>You&rsquo;re running a <strong>$500,000&ndash;660,000/year business</strong> built entirely on walk-ins, phone calls, and word-of-mouth &mdash; with <strong>zero digital infrastructure</strong> capturing demand. The I-10/US-183 corridor generates constant commercial truck traffic past the Luling location, but without an online presence, fleet managers don&rsquo;t know Stars exists. The system we&rsquo;re building doesn&rsquo;t replace what&rsquo;s working &mdash; it <strong>adds $150,000&ndash;500,000 in new annual revenue channels</strong> on top of it.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 02 — THE CONVERSION GAP ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">02</div>
+    <h2 class="section-title reveal">The Conversion Gap</h2>
+    <p class="section-lead reveal">$21,600/year in marketing spend with zero measurable ROI. The system below completes the circuit between attention and revenue.</p>
+
+    <div class="flow-compare reveal">
+      <div class="flow-panel before">
+        <div class="flow-label"><span class="dot"></span> Current State</div>
+        <div class="flow-step">
+          <div class="num">1</div>
+          <div class="text">Social post created <em>&mdash; manual, $1,800/mo</em></div>
+        </div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <div class="text">Post reaches feed <em>&mdash; ~5&ndash;12% organic reach</em></div>
+        </div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <div class="text">Customer clicks to website <em>&mdash; ~1.5% CTR</em></div>
+        </div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <div class="text">Homepage &mdash; no targeted landing page, no CTA</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">5</div>
+          <div class="text">Customer leaves <em>&mdash; no lead capture, no retargeting</em></div>
+        </div>
+        <div class="flow-step">
+          <div class="num">6</div>
+          <div class="text">Opportunity lost <em>&mdash; &lt; 0.3% conversion</em></div>
+        </div>
+        <div class="flow-result">Result &mdash; Posts don&rsquo;t pay rent. $21,600/year with zero measurable ROI.</div>
+      </div>
+
+      <div class="flow-panel after">
+        <div class="flow-label"><span class="dot"></span> With Digital Growth System</div>
+        <div class="flow-step">
+          <div class="num">1</div>
+          <div class="text">AI-assisted content auto-posted to IG + FB</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <div class="text">Targeted audience via Meta Pixel &mdash; retargeting enabled</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <div class="text">Customer lands on dedicated landing page &mdash; SEO + Google Ads</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <div class="text">Lead captured &mdash; VectorHub CRM + WooCommerce</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">5</div>
+          <div class="text">Email/SMS follow-up sequence &mdash; automated nurture</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">6</div>
+          <div class="text">Converts &mdash; online purchase, in-store visit, or fleet inquiry <em>&mdash; 3&ndash;8% target</em></div>
+        </div>
+        <div class="flow-result">Result &mdash; Every post has a job to do. Every click is tracked.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 03 — COMPETITIVE PRICING STRATEGY ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">03</div>
+    <h2 class="section-title reveal">Competitive Pricing Strategy</h2>
+    <p class="section-lead reveal">Unbundle the tire price from services. Win the comparison shop. Capture service revenue as visible, explicit upsells.</p>
+
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">PRICING</span>
+        <span class="deliverable-title">Unbundled Price Architecture</span>
+        <span class="deliverable-tag">Strategy</span>
+      </div>
+      <div class="deliverable-body">
+        <p><strong style="color:var(--accent);">The Problem:</strong> Stars currently bundles mounting, balancing, and warranty into the tire price. This makes tires appear <strong style="color:var(--accent);">$60&ndash;80 more expensive per tire</strong> vs. TireRack, Discount Tire, and Amazon &mdash; even though out-the-door prices are comparable.</p>
+        <p><strong style="color:var(--accent);">The Solution:</strong> Display tire-only price (lowest distributor cost + $20 markup) on product pages and Google Shopping. Services presented as transparent add-ons at checkout.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-col">
+            <div class="pricing-col-label highlight">Tire Price</div>
+            <div class="pricing-item">Real-time lowest cost from 5+ distributors</div>
+            <div class="pricing-item">+ $20 flat markup = listing price</div>
+            <div class="pricing-item">Competitive on Google Shopping, product pages</div>
+            <div class="pricing-item">Year/Make/Model fitment guide for easy search</div>
+          </div>
+          <div class="pricing-col raised">
+            <div class="pricing-col-label highlight">Service Add-Ons at Checkout</div>
+            <div class="pricing-item">Mounting &mdash; $15&ndash;20/tire</div>
+            <div class="pricing-item">Computer Balancing &mdash; $15&ndash;20/tire</div>
+            <div class="pricing-item">Road Force Balancing &mdash; $25&ndash;30/tire</div>
+            <div class="pricing-item">Road Hazard Warranty &mdash; $12&ndash;18/tire</div>
+            <div class="pricing-item">TPMS Sensor Reset &mdash; $5&ndash;8/tire</div>
+            <div class="pricing-item">Valve Stems &mdash; $3&ndash;5/tire</div>
+            <div class="pricing-item">Disposal/Environmental Fee &mdash; $3&ndash;5/tire</div>
+            <div class="pricing-item">Alignment &mdash; $89&ndash;129 (once, not per tire)</div>
+            <div class="pricing-item">FET &mdash; commercial tires only (rate applied at checkout)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <p>The tire-only price wins the comparison shop. Service fees are captured as <strong>explicit, separate revenue</strong>. Premium services become <strong>visible upsells</strong> instead of hidden freebies. Cart value actually <strong>goes up</strong> because customers add services they can see the value of. Clover POS syncs all service items as matching line items &mdash; in-store and online pricing stays consistent.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 04 — SUPPLIER NETWORK ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">04</div>
+    <h2 class="section-title reveal">Supplier Network</h2>
+    <p class="section-lead reveal">Two tiers of supplier integration. Tier 1 feeds real-time pricing and inventory into WooCommerce via API. Tier 2 supplies specialty brands via portal access and static catalog.</p>
+
+    <!-- TIER 1 -->
+    <div style="margin-bottom: 48px;" class="reveal">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Tier 1 &mdash; API / Automated (Real-time WooCommerce Sync)</div>
+      <table class="supplier-table">
+        <thead>
+          <tr>
+            <th>Distributor</th>
+            <th>Key Brands</th>
+            <th>API Layer</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NTW <span class="priority-tag">Priority #1</span></td>
+            <td>Michelin, BFG, Uniroyal, Continental, Cooper, Sailun</td>
+            <td>TireConnect API</td>
+            <td><span class="status-needed">Registration needed</span></td>
+          </tr>
+          <tr>
+            <td>TireHub <span class="priority-tag">Priority #2</span></td>
+            <td>Goodyear, Bridgestone, Cooper, Firestone, Kelly, Dunlop</td>
+            <td>TireConnect + TireWire</td>
+            <td><span class="status-needed">Registration needed</span></td>
+          </tr>
+          <tr>
+            <td>K&amp;M Tire <span class="priority-tag">#3</span></td>
+            <td>Continental, Cooper, Falken, Hankook, Kumho, Yokohama, 50+ brands</td>
+            <td>Weblink 2.0 + TireConnect</td>
+            <td><span class="status-needed">Registration needed</span></td>
+          </tr>
+          <tr>
+            <td>U.S. AutoForce <span class="priority-tag">#4</span></td>
+            <td>All major brands + undercar parts</td>
+            <td>TireWire API</td>
+            <td><span class="status-active">Active dealer &#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Hesselbein</td>
+            <td>Goodyear, Toyo, Kumho, Firestone</td>
+            <td>Tireweb Connections</td>
+            <td><span class="status-active">Active dealer &#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Southern Tire Mart</td>
+            <td>Bridgestone, Michelin, Toyo, Yokohama</td>
+            <td>Tireweb Connections</td>
+            <td><span class="status-active">Active dealer &#10003;</span></td>
+          </tr>
+          <tr>
+            <td>ATD <span style="font-family:'IBM Plex Mono',monospace; font-size:8px; color:var(--text-dim); letter-spacing:1px;">(MONITOR)</span></td>
+            <td>Reduced catalog &mdash; Hankook, Kumho, Toyo</td>
+            <td>REST API</td>
+            <td><span style="color:var(--text-dim);">Active &mdash; degraded*</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="supplier-note">*ATD filed Chapter 11 (Oct 2024), lost Michelin/BFG/Uniroyal (Jul 2025) and Goodyear/Cooper (Jun 2025). API functional but catalog severely reduced.</div>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="reveal">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Tier 2 &mdash; Portal + Static Catalog</div>
+      <table class="supplier-table">
+        <thead>
+          <tr>
+            <th>Distributor</th>
+            <th>Key Brands</th>
+            <th>Retail Edge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tireco</td>
+            <td>Milestar, Westlake, Nankang, Nokian</td>
+            <td>Value-tier leader, MAP pricing protects margins</td>
+          </tr>
+          <tr>
+            <td>Gulf Tire (SA)</td>
+            <td>Accelera, Venom Power, Arroyo, Zeta, Waterfall</td>
+            <td>Exclusive brands + SA twice-daily delivery</td>
+          </tr>
+          <tr>
+            <td>BZO (SA)</td>
+            <td>Landgolden, Atlas (exclusive TBR) + wheels</td>
+            <td>Same-day SA delivery, ~40&ndash;60 TBR SKUs</td>
+          </tr>
+          <tr>
+            <td>Turbo Wholesale</td>
+            <td>Lexani, RBP, Lionhart</td>
+            <td>Territory-protected &mdash; no local price competition</td>
+          </tr>
+          <tr>
+            <td>Apache (SA)</td>
+            <td>Brand-name commercial TBR</td>
+            <td>SA warehouse, commercial specialist</td>
+          </tr>
+          <tr>
+            <td>WTD</td>
+            <td>Arroyo, American Roadstar, Zestino (EV/run-flat)</td>
+            <td>First-mover EV tire segment</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="supplier-note">
+        <strong style="color:var(--text-bright)">Rims:</strong> WheelPros + WheelOne via Tirewire Wheels API, BZO wheels, Gulf Tire wheels.<br>
+        <strong style="color:var(--text-bright)">SimpleTire:</strong> Register as installation partner for parallel revenue ($20&ndash;40/tire install fees from online buyers in the area &mdash; zero cost, zero development).
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <p>One API integration &rarr; unified query across all Tier 1 suppliers &rarr; automatic lowest-cost routing. Thousands of SKUs listed on the online store <strong>without holding a single extra tire in inventory.</strong> Stars becomes the only shop in the I-10 corridor with access to every major tire brand through a single storefront.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 05 — THREE-TIER PRODUCT ARCHITECTURE ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">05</div>
+    <h2 class="section-title reveal">Three-Tier Product Architecture</h2>
+    <p class="section-lead reveal">Different product categories require different levels of automation. Retail runs fully automated. Commercial is semi-automated with paylinks. OTR and specialty stays quote-driven.</p>
+
+    <!-- TIER 1 — RETAIL -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">01</span>
+        <span class="deliverable-title">Retail / Light Truck</span>
+        <span class="deliverable-tag">Tier 1</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Customer shops by size or year/make/model &rarr; adds to cart &rarr; unbundled services at checkout &rarr; pays via Clover or Acima lease-to-own &rarr; order routes automatically to lowest-cost distributor &rarr; same-day or next-day delivery to shop &rarr; customer picks up installed.</p>
+        <ul class="deliverable-list">
+          <li>Year/make/model fitment guide</li>
+          <li>Real-time multi-distributor pricing</li>
+          <li>Google Shopping product feed</li>
+          <li>Unbundled service add-ons at checkout</li>
+          <li>Clover payment gateway</li>
+          <li>Acima lease-to-own financing</li>
+          <li>Abandoned cart recovery</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TIER 2 — COMMERCIAL TBR -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">02</span>
+        <span class="deliverable-title">Commercial TBR</span>
+        <span class="deliverable-tag">Tier 2</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Customer requests quote via website form or phone &rarr; system checks Southern Tire Mart / ATD inventory via API &rarr; owner checks BZO manually for Landgolden/Atlas &rarr; builds quote in WP admin &rarr; sends paylink via SMS or email &rarr; customer pays through Clover hosted checkout &rarr; owner orders from distributor.</p>
+        <ul class="deliverable-list">
+          <li>Commercial quote request form</li>
+          <li>Admin-side quote builder</li>
+          <li>Clover hosted checkout paylink</li>
+          <li>SMS/email delivery (Twilio)</li>
+          <li>Static TBR catalog (Landgolden + Atlas)</li>
+          <li>Fleet account invoicing option</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TIER 3 — OTR & SPECIALTY -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">03</span>
+        <span class="deliverable-title">OTR &amp; Specialty</span>
+        <span class="deliverable-tag">Tier 3</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Quote request form captures equipment type, tire size, quantity, fleet info &rarr; owner prices manually &rarr; paylink sent &rarr; customer pays &rarr; service scheduled.</p>
+        <ul class="deliverable-list">
+          <li>OTR quote form with specialty size fields</li>
+          <li>Equipment type selectors</li>
+          <li>Manual pricing workflow</li>
+          <li>Paylink delivery via SMS/email</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 06 — SYSTEM COMPONENTS ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">06</div>
+    <h2 class="section-title reveal">System Components</h2>
+    <p class="section-lead reveal">Seven interconnected components that form the complete digital revenue engine. Each one solves a specific gap identified in the discovery summary.</p>
+
+    <!-- 01 — WooCommerce -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">01</span>
+        <span class="deliverable-title">WooCommerce E-Commerce Store</span>
+        <span class="deliverable-tag">E-Commerce</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Full online tire and rim shop. Products organized by vehicle type, tire size, and brand. Real-time pricing from Tier 1 distributors. Unbundled service add-ons at checkout. Buy online, pick up in-store. Same-day install if ordered by noon.</p>
+        <ul class="deliverable-list">
+          <li>Product pages with specs + fitment data</li>
+          <li>Real-time inventory badges</li>
+          <li>Tire size search + year/make/model lookup</li>
+          <li>Service add-on builder at checkout</li>
+          <li>In-store pickup workflow</li>
+          <li>Google Shopping sync</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 02 — Clover -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">02</span>
+        <span class="deliverable-title">Clover POS Integration</span>
+        <span class="deliverable-tag">Payments</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Bidirectional sync between WooCommerce and Clover. Orders, inventory, and payments flow both directions. Service items (mount, balance, warranty) exist as matching line items in both systems. Paylink generation for commercial quotes.</p>
+        <ul class="deliverable-list">
+          <li>WooCommerce &#8596; Clover order sync</li>
+          <li>Service items as separate line items</li>
+          <li>Online payment processing</li>
+          <li>Quote-to-paylink via Clover hosted checkout</li>
+          <li>Consistent in-store and online pricing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 03 — TireConnect / TireWire -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">03</span>
+        <span class="deliverable-title">TireConnect / TireWire API Plugin</span>
+        <span class="deliverable-tag">Automation</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Custom WordPress plugin replacing the CSV/XML import approach. Real-time queries across all Tier 1 distributors via TireConnect and TireWire APIs. Automatic lowest-cost routing. No WP-Cron dependency &mdash; eliminates the GoDaddy SSH blocker entirely.</p>
+        <ul class="deliverable-list">
+          <li>Real-time inventory + pricing queries</li>
+          <li>Multi-distributor price comparison</li>
+          <li>Automatic lowest-cost order routing</li>
+          <li>Fitment data from TireConnect</li>
+          <li>Zero WP-Cron / SSH dependency</li>
+          <li>Product catalog auto-maintenance</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 04 — VectorHub CRM -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">04</span>
+        <span class="deliverable-title">VectorHub CRM &mdash; Fleet + Consumer</span>
+        <span class="deliverable-tag">CRM</span>
+      </div>
+      <div class="deliverable-body">
+        <p>One CRM for everything &mdash; fleet outreach, consumer automation, and lead management. VectorHub is a proprietary WordPress plugin with native WooCommerce and Clover integrations, SendGrid email campaigns, marketing automation engine, lead scoring, and company (B2B) management. No third-party CRM licenses required.</p>
+        <ul class="deliverable-list">
+          <li>Fleet outreach &mdash; TX carrier segment targeting</li>
+          <li>4-touch email sequence over 14 days</li>
+          <li>Fleet landing page at /fleet-priority-service</li>
+          <li>Fleet account + SLA documentation</li>
+          <li>Auto-tag leads by type on submission</li>
+          <li>Post-purchase follow-up sequences</li>
+          <li>Abandoned cart recovery</li>
+          <li>24-hour review request via SMS</li>
+          <li>Lead scoring + dynamic segments</li>
+          <li>SendGrid email campaigns with tracking</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 05 — VectorDispatch -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">05</span>
+        <span class="deliverable-title">VectorDispatch &mdash; Mobile Service Platform</span>
+        <span class="deliverable-tag">Dispatch</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Full dispatch platform for roadside and mobile tire service. Proprietary WordPress plugin with technician PWA (works on any phone), real-time GPS tracking, route optimization, and automated customer notifications via Twilio SMS. Customers see live ETA. Techs capture service photos, digital signatures, and collect payment on-site.</p>
+        <ul class="deliverable-list">
+          <li>24/7 roadside service request form</li>
+          <li>Technician PWA app (phone + PIN login)</li>
+          <li>Real-time GPS tracking + live ETA</li>
+          <li>Route optimization (multi-stop service runs)</li>
+          <li>Twilio SMS &mdash; &ldquo;tech en route&rdquo; + arrival alerts</li>
+          <li>Service photo capture (before/after)</li>
+          <li>Digital signature at completion</li>
+          <li>On-site payment collection via Clover</li>
+          <li>Dispatcher assignment dashboard</li>
+          <li>Customer portal &mdash; track service status online</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 06 — SEO -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">06</span>
+        <span class="deliverable-title">SEO Foundation</span>
+        <span class="deliverable-tag">Already Live</span>
+      </div>
+      <div class="deliverable-body">
+        <p>stars-seo-fixes plugin v2.2.0 already deployed. JSON-LD structured data with two TireShop entries (#seguin, #luling). 10-milestone SEO roadmap in progress. Product schema will extend existing framework.</p>
+        <ul class="deliverable-list">
+          <li>Structured data live for both locations</li>
+          <li>JSON-LD @graph with dual TireShop entries</li>
+          <li>10-milestone SEO roadmap (M1&ndash;M10)</li>
+          <li>Product schema extension planned</li>
+          <li>Luling location page (/luling/) &mdash; Phase 1</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 07 — Financing -->
+    <div class="deliverable reveal">
+      <div class="deliverable-header">
+        <span class="deliverable-num">07</span>
+        <span class="deliverable-title">Financing Integration</span>
+        <span class="deliverable-tag">Revenue</span>
+      </div>
+      <div class="deliverable-body">
+        <p>Acima Leasing as the primary named financing partner for both locations. Additional lease-to-own options available (call or visit for details). Checkout language is fully compliant.</p>
+        <ul class="deliverable-list">
+          <li>Acima Leasing &mdash; Seguin location</li>
+          <li>Acima Leasing &mdash; Luling location</li>
+          <li>Compliant checkout language for additional options</li>
+          <li>Financing badge on product pages</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 07 — REVENUE PROJECTIONS ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">07</div>
+    <h2 class="section-title reveal">Revenue Projections</h2>
+    <p class="section-lead reveal">Projections use the corrected $40,000&ndash;55,000/mo baseline from actual Clover transaction data. Three scenarios account for different adoption rates across new channels.</p>
+
+    <div class="reveal">
+      <table class="rev-table">
+        <thead>
+          <tr>
+            <th>Revenue Stream</th>
+            <th>Current</th>
+            <th>Conservative (12-Mo)</th>
+            <th>Target (12-Mo)</th>
+            <th>Stretch (18-Mo)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Walk-In / Retail</td>
+            <td>$35,000&ndash;45,000</td>
+            <td>$45,000</td>
+            <td>$55,000</td>
+            <td>$65,000</td>
+          </tr>
+          <tr>
+            <td>E-Commerce</td>
+            <td>$0</td>
+            <td>$5,000</td>
+            <td>$10,000</td>
+            <td>$18,000</td>
+          </tr>
+          <tr>
+            <td>Google Shopping</td>
+            <td>$0</td>
+            <td>$3,000</td>
+            <td>$5,000</td>
+            <td>$8,000</td>
+          </tr>
+          <tr>
+            <td>Fleet Accounts (B2B)</td>
+            <td>$0</td>
+            <td>$5,000</td>
+            <td>$12,000</td>
+            <td>$20,000</td>
+          </tr>
+          <tr>
+            <td>Roadside Service</td>
+            <td>$3,000&ndash;5,000</td>
+            <td>$6,000</td>
+            <td>$9,000</td>
+            <td>$12,000</td>
+          </tr>
+          <tr>
+            <td>Dropship Margins</td>
+            <td>$0</td>
+            <td>$2,000</td>
+            <td>$4,000</td>
+            <td>$6,000</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>TOTAL</td>
+            <td>$40,000&ndash;55,000</td>
+            <td>$66,000</td>
+            <td>$95,000</td>
+            <td>$129,000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Fleet Account Economics -->
+    <div class="reveal" style="margin-top:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Fleet Account Economics</div>
+      <table class="rev-table">
+        <thead>
+          <tr>
+            <th>Fleet Size</th>
+            <th>Avg Tires/Year</th>
+            <th>Avg Revenue/Account</th>
+            <th># Accounts Needed</th>
+            <th>Monthly Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5&ndash;10 trucks</td>
+            <td>40&ndash;80 tires</td>
+            <td>$8,000&ndash;12,000/yr</td>
+            <td>10 accounts</td>
+            <td>$7,000&ndash;10,000</td>
+          </tr>
+          <tr>
+            <td>11&ndash;25 trucks</td>
+            <td>90&ndash;200 tires</td>
+            <td>$18,000&ndash;35,000/yr</td>
+            <td>5 accounts</td>
+            <td>$7,500&ndash;15,000</td>
+          </tr>
+          <tr>
+            <td>26+ trucks</td>
+            <td>200+ tires</td>
+            <td>$40,000+/yr</td>
+            <td>2 accounts</td>
+            <td>$7,000&ndash;10,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight reveal">
+      <p>The conservative scenario alone represents a <strong>65% revenue increase</strong> &mdash; from $40&ndash;55K to $66K/mo. A single fleet account with 5&ndash;10 trucks at $8,000&ndash;12,000/year pays for the entire annual retainer. The stretch target of $129K/mo ($1.55M/yr) requires only 5&ndash;7 fleet accounts plus moderate e-commerce traction.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 08 — IMPLEMENTATION TIMELINE ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">08</div>
+    <h2 class="section-title reveal">Implementation Timeline</h2>
+    <p class="section-lead reveal">14-week phased rollout. Each phase builds on the previous one with measurable milestones.</p>
+
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="week">WK 1&ndash;2</div>
+          <div class="dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Foundation</div>
+          <div class="tl-desc">GBP optimization + Luling GBP setup. VectorHub CRM configuration + SendGrid setup. Lead capture forms on all service pages. Social content calendar + Canva brand kit. Fleet landing page. Luling location page (/luling/). NTW dealer registration. GoDaddy hosting assessment.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="week">WK 3&ndash;5</div>
+          <div class="dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">E-Commerce Launch</div>
+          <div class="tl-desc">WooCommerce store + Clover integration. Initial product catalog &mdash; in-stock tires and rims. Google Merchant Center + Shopping feed. Acima integration (both locations). Abandoned cart recovery. Year/make/model fitment guide.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="week">WK 5&ndash;8</div>
+          <div class="dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">API Integration + Automation</div>
+          <div class="tl-desc">TireConnect/TireWire API plugin (replaces CSV import). Unbundled pricing engine. Static Tier 2 catalogs (BZO TBR, Gulf Tire, Tireco). VectorDispatch platform deployment + tech PWA setup. Review request automation. Google Performance Max campaign ($15&ndash;25/day). SimpleTire installation partner registration.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="week">WK 6&ndash;10</div>
+          <div class="dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Fleet Outreach + Commercial</div>
+          <div class="tl-desc">VectorHub CRM fleet campaign &mdash; TX carrier segment. Quote-to-paylink system (Clover hosted checkout). Fleet onboarding workflow + SLA documentation. Multi-touch email sequence: 4 touches over 14 days. Target: 3 fleet accounts within 90 days.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="week">WK 10&ndash;14</div>
+          <div class="dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Distributor Expansion</div>
+          <div class="tl-desc">Additional Tier 1 accounts: NTW, TireHub, K&amp;M. Dealer program enrollment (TireHub Plus, Velocity by Goodyear, K&amp;M Mr. Tire). Brand dealer finder listings (Goodyear.com, Bridgestone.com). Expanded product catalog.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 09 — INVESTMENT ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">09</div>
+    <h2 class="section-title reveal">Investment</h2>
+    <p class="section-lead reveal">Fixed project pricing with transparent cost breakdown. Setup covers the complete build. Monthly retainer covers ongoing campaign management, maintenance, and ad management.</p>
+
+    <!-- SETUP TABLE -->
+    <div class="reveal">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Setup (One-Time)</div>
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WordPress / WooCommerce Build</td>
+            <td>Site migration from GoDaddy to managed hosting, full e-commerce store, product pages, landing pages, checkout flow</td>
+            <td>$2,500</td>
+          </tr>
+          <tr>
+            <td>TireConnect / TireWire API Plugin</td>
+            <td>Multi-supplier real-time inventory, pricing, order routing</td>
+            <td>$1,800</td>
+          </tr>
+          <tr>
+            <td>Year/Make/Model Fitment Guide</td>
+            <td>Consumer vehicle search, TireConnect fitment data</td>
+            <td>$600</td>
+          </tr>
+          <tr>
+            <td>Clover POS Integration + Paylink</td>
+            <td>Bidirectional sync, service items, quote-to-paylink system</td>
+            <td>$1,200</td>
+          </tr>
+          <tr>
+            <td>Unbundled Pricing Engine</td>
+            <td>Service add-ons, markup rules, installed price calculator</td>
+            <td>$800</td>
+          </tr>
+          <tr>
+            <td>Static TBR + Tier 2 Catalogs</td>
+            <td>BZO Landgolden/Atlas, Gulf Tire, Tireco product pages</td>
+            <td>$900</td>
+          </tr>
+          <tr>
+            <td>VectorHub CRM + Automation Config</td>
+            <td>Automation sequences, lead scoring, SendGrid templates, abandoned cart, fleet pipeline</td>
+            <td>$800</td>
+          </tr>
+          <tr>
+            <td>Google Shopping + Merchant Center</td>
+            <td>Product feed sync, Shopping ads setup</td>
+            <td>$600</td>
+          </tr>
+          <tr>
+            <td>VectorDispatch Platform</td>
+            <td>Tech PWA, GPS tracking, route optimization, Twilio SMS, service photos, signatures, customer portal</td>
+            <td>$600</td>
+          </tr>
+          <tr>
+            <td>Social Calendar + Canva Brand Kit</td>
+            <td>30-day content calendar, branded templates</td>
+            <td>$400</td>
+          </tr>
+          <tr>
+            <td>Google Ads Management Setup</td>
+            <td>PMax campaign configuration</td>
+            <td>$300</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>TOTAL SETUP</td>
+            <td></td>
+            <td>$10,500</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- MONTHLY RETAINER -->
+    <div class="reveal" style="margin-top:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Monthly Retainer</div>
+      <div class="retainer-grid">
+        <div class="retainer-item">
+          <span class="r-label">VectorHub CRM + Fleet Campaign</span>
+          <span class="r-amount">$500</span>
+        </div>
+        <div class="retainer-item">
+          <span class="r-label">API Plugin Maintenance</span>
+          <span class="r-amount">$150</span>
+        </div>
+        <div class="retainer-item">
+          <span class="r-label">Twilio SMS (usage-based)</span>
+          <span class="r-amount">$75</span>
+        </div>
+        <div class="retainer-item">
+          <span class="r-label">Social Calendar + Scheduling</span>
+          <span class="r-amount">$200</span>
+        </div>
+        <div class="retainer-item">
+          <span class="r-label">Managed Hosting &mdash; Site Migration to Cloudways (Vultr HF, Dallas DC)</span>
+          <span class="r-amount">$56</span>
+        </div>
+        <div class="retainer-item" style="grid-column: 1 / -1;">
+          <span class="r-label">Google Ads Management</span>
+          <span class="r-amount">$300 + ad spend ($15&ndash;25/day)</span>
+        </div>
+        <div class="retainer-total">
+          <span class="r-label">MONTHLY RETAINER</span>
+          <span class="r-amount">$1,281/mo</span>
+        </div>
+      </div>
+      <div class="inv-note">
+        <strong style="color:var(--text-bright)">Note:</strong> Google Ads spend of $450&ndash;750/mo is paid directly to Google, not to VectorEchelon.
+      </div>
+      <div class="inv-note" style="margin-top:12px;">
+        <strong style="color:var(--text-bright)">Hosting Migration (included):</strong> Your current GoDaddy hosting does not support the server access, PHP performance, or scaling required for real-time distributor API calls, WooCommerce product sync, and high-traffic e-commerce. As part of the build, we migrate your site to managed hosting on high-frequency servers in <strong style="color:var(--text-bright)">Dallas, TX</strong> &mdash; 180 miles from both locations &mdash; for faster page loads, auto-scaling, and zero plugin restrictions. <strong style="color:var(--text-bright)">The $56/mo replaces your current GoDaddy hosting cost &mdash; not an additional charge.</strong> You cancel GoDaddy once the migration is complete.
+      </div>
+    </div>
+
+    <!-- DELIVERY COMMITMENT -->
+    <div class="insight reveal" style="margin-top:48px;">
+      <p style="font-style:normal;"><strong>14-Week Delivery Commitment</strong></p>
+      <p>All five phases are delivered on the implementation timeline above &mdash; <strong>regardless of which payment plan is selected.</strong> Work begins immediately upon first payment. The payment schedule is a financing convenience, not a delivery gate.</p>
+    </div>
+
+    <!-- PAYMENT OPTIONS -->
+    <div class="reveal" style="margin-top:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:16px;">Choose Your Payment Plan</div>
+
+      <!-- Option 1: Pay in Full -->
+      <div class="pay-option" data-option="full" onclick="togglePayOption(this)">
+        <div class="pay-option-header">
+          <div class="pay-option-left">
+            <div class="pay-option-radio"></div>
+            <div>
+              <div class="pay-option-title">Pay in Full</div>
+              <div class="pay-option-desc">Single payment &mdash; project kicks off immediately</div>
+            </div>
+          </div>
+          <div class="pay-option-price">$10,500</div>
+        </div>
+        <div class="pay-option-detail">
+          <div class="pay-detail-row">
+            <span>Setup &mdash; Digital Revenue Growth System (complete)</span>
+            <span class="pay-amount">$10,500</span>
+          </div>
+          <a href="https://buy.stripe.com/3cI14pdxvbr7br0cSu3AY0n" target="_blank" class="pay-btn">Pay $10,500 Now</a>
+          <div class="pay-alt">Or pay via cash, check, or bank transfer &mdash; <a href="https://calendly.com/contact-vectorechelon" target="_blank">contact us</a></div>
+        </div>
+      </div>
+
+      <!-- Option 2: 3 Payments -->
+      <div class="pay-option" data-option="three" onclick="togglePayOption(this)">
+        <div class="pay-option-header">
+          <div class="pay-option-left">
+            <div class="pay-option-radio"></div>
+            <div>
+              <div class="pay-option-title">3 Monthly Payments</div>
+              <div class="pay-option-desc">$3,500/mo for 3 months</div>
+            </div>
+          </div>
+          <div class="pay-option-price">$10,500</div>
+        </div>
+        <div class="pay-option-detail">
+          <div class="pay-detail-row"><span>Payment 1 &mdash; Due at kickoff</span><span class="pay-amount">$3,500</span></div>
+          <div class="pay-detail-row"><span>Payment 2 &mdash; Month 2</span><span class="pay-amount">$3,500</span></div>
+          <div class="pay-detail-row"><span>Payment 3 &mdash; Month 3</span><span class="pay-amount">$3,500</span></div>
+          <a href="https://buy.stripe.com/4gM4gB50Z0MteDc4lY3AY0o" target="_blank" class="pay-btn">Pay First Installment &mdash; $3,500</a>
+          <div class="pay-alt">Or pay via cash, check, or bank transfer &mdash; <a href="https://calendly.com/contact-vectorechelon" target="_blank">contact us</a></div>
+        </div>
+      </div>
+
+      <!-- Option 3: 6 Payments -->
+      <div class="pay-option" data-option="six" onclick="togglePayOption(this)">
+        <div class="pay-option-header">
+          <div class="pay-option-left">
+            <div class="pay-option-radio"></div>
+            <div>
+              <div class="pay-option-title">6 Monthly Payments</div>
+              <div class="pay-option-desc">$1,750/mo for 6 months</div>
+            </div>
+          </div>
+          <div class="pay-option-price">$10,500</div>
+        </div>
+        <div class="pay-option-detail">
+          <div class="pay-detail-row"><span>Payment 1 &mdash; Due at kickoff</span><span class="pay-amount">$1,750</span></div>
+          <div class="pay-detail-row"><span>Payment 2 &mdash; Month 2</span><span class="pay-amount">$1,750</span></div>
+          <div class="pay-detail-row"><span>Payment 3 &mdash; Month 3</span><span class="pay-amount">$1,750</span></div>
+          <div class="pay-detail-row"><span>Payment 4 &mdash; Month 4</span><span class="pay-amount">$1,750</span></div>
+          <div class="pay-detail-row"><span>Payment 5 &mdash; Month 5</span><span class="pay-amount">$1,750</span></div>
+          <div class="pay-detail-row"><span>Payment 6 &mdash; Month 6</span><span class="pay-amount">$1,750</span></div>
+          <a href="https://buy.stripe.com/4gMcN750Z3YFeDcf0C3AY0p" target="_blank" class="pay-btn">Pay First Installment &mdash; $1,750</a>
+          <div class="pay-alt">Or pay via cash, check, or bank transfer &mdash; <a href="https://calendly.com/contact-vectorechelon" target="_blank">contact us</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ownership reveal">
+      <div class="ownership-icon">&infin;</div>
+      <p><strong>Everything we build is yours.</strong> The WooCommerce store, VectorHub CRM data, email lists, product catalog, customer data, Clover transaction data, and Tirewire/TireConnect API connections all remain Stars Tire Shop property. VectorHub runs as a WordPress plugin on your hosting &mdash; <strong>no external infrastructure, no vendor lock-in.</strong></p>
+    </div>
+
+    <div class="ownership reveal" style="border-left-color: var(--green);">
+      <div class="ownership-icon" style="font-size: 18px;">&#x1f512;</div>
+      <p><strong>Security-First Build.</strong> All customer data, payment information, and business records are stored on <strong>your servers</strong> &mdash; not third-party platforms you don&rsquo;t control. The site is built with SSL encryption, PCI-compliant payment processing through Clover and Acima (no card data touches your server), role-based admin access, firewall protection, automated backups, and WordPress security hardening. No one accesses payment or client information without your authorization.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 10 — PERFORMANCE & ACCOUNTABILITY ===== -->
+<section>
+  <div class="container">
+    <div class="section-num reveal">10</div>
+    <h2 class="section-title reveal">Performance &amp; Accountability</h2>
+    <p class="section-lead reveal">Clear benchmarks, transparent reporting, and a 90-day review built into the process.</p>
+
+    <div class="insight reveal">
+      <p style="font-style:normal;"><strong>90-Day Performance Review</strong></p>
+      <p>Defined KPIs: website traffic, leads captured, conversion rates, revenue by channel. Monthly reporting dashboard. If benchmarks aren&rsquo;t met at 90 days, both parties revisit scope and strategy.</p>
+    </div>
+
+    <div class="insight reveal" style="border-left-color: var(--accent-dim);">
+      <p style="font-style:normal;"><strong>Monthly Retainer vs. Current Spend</strong></p>
+      <p>At $1,281/month, the retainer is <strong>$519 less than the current $1,800/mo marketing spend</strong> &mdash; while building real digital infrastructure that Stars Tire Shop owns permanently. The current spend produces social posts. This spend produces a <strong>revenue engine</strong> on managed hosting with a Dallas datacenter 180 miles from both locations.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 11 — NEXT STEPS ===== -->
+<section style="border-bottom: none;">
+  <div class="container">
+    <div class="section-num reveal">11</div>
+    <h2 class="section-title reveal">Next Steps</h2>
+
+    <ol class="steps-list reveal">
+      <li><p><strong>Review this proposal</strong> and confirm the scope matches your priorities for both the Seguin retail and Luling commercial locations.</p></li>
+      <li><p><strong><a href="https://calendly.com/contact-vectorechelon" target="_blank" style="color:var(--accent); text-decoration:underline;">Schedule a kickoff call</a></strong> &mdash; one hour to confirm priorities, review Clover transaction data for baseline, and set 90-day milestones.</p></li>
+      <li><p><strong>Provide access</strong> &mdash; WordPress admin, hosting credentials, Facebook/Google Business login. Clover admin is already available.</p></li>
+      <li><p><strong>First payment</strong> &mdash; choose your plan above and pay via Stripe, cash, check, or bank transfer. Work begins immediately.</p></li>
+      <li><p><strong>We begin immediately</strong> &mdash; GBP optimization, VectorHub CRM, lead capture, and social calendar delivered within 2 weeks.</p></li>
+    </ol>
+
+    <div class="ownership reveal">
+      <div class="ownership-icon" style="font-size: 18px;">&rarr;</div>
+      <p>You&rsquo;re not starting from zero &mdash; you&rsquo;re starting from a <strong>$500,000&ndash;660,000/year business</strong> built on reputation, location, and hustle. This system captures the revenue you&rsquo;re currently leaving on the table &mdash; fleet accounts, online sales, roadside calls, and customers who drive past because they can&rsquo;t find you on Google.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-brand">VECTORECHELON AI</div>
+    <div class="footer-contact">
+      <a href="mailto:juan@vectorechelon.com">juan@vectorechelon.com</a><br>
+      830-305-1254<br>
+      <a href="https://www.vectorechelon.com">www.vectorechelon.com</a>
+    </div>
+    <div class="footer-legal">Confidential &mdash; Prepared for Stars Tire Shop &mdash; 23 February 2026</div>
+  </div>
+</div>
+
+
+<script>
+// Scroll-triggered reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.08,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stagger children within the same parent for grid items
+document.querySelectorAll('.disc-grid, .flow-compare').forEach(parent => {
+  const children = parent.querySelectorAll('.disc-cell, .flow-panel');
+  children.forEach((child, i) => {
+    child.style.transitionDelay = (i * 0.08) + 's';
+  });
+});
+
+// Payment option toggle — click to expand, only one open at a time
+function togglePayOption(el) {
+  const wasActive = el.classList.contains('active');
+  document.querySelectorAll('.pay-option').forEach(opt => opt.classList.remove('active'));
+  if (!wasActive) el.classList.add('active');
+}
+</script>
+
+</body>
+</html>
